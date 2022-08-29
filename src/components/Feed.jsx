@@ -1,7 +1,20 @@
 import { Stack, Box, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Sidebar, Videos } from './';
+import { getVideosFromAPI } from '../redux/videos/videos-slice';
 
 const Feed = () => {
+  const [selectedCategory, setSelectedCategory] = useState('New');
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getVideosFromAPI(selectedCategory));
+  }, []);
+
+  const videos = useSelector((state) => state.videos.videos);
+
   return (
     <Stack sx={{ flexDirection: { sx: 'column', md: 'row' } }}>
       <Box
@@ -11,7 +24,10 @@ const Feed = () => {
           px: { sx: 0, md: 2 },
         }}
       >
-        <Sidebar />
+        <Sidebar
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
 
         <Typography
           className="copyright"
@@ -37,10 +53,10 @@ const Feed = () => {
             color: '#fff',
           }}
         >
-          New <span style={{ color: '#F31503' }}>Videos</span>
+          {selectedCategory} <span style={{ color: '#F31503' }}>Videos</span>
         </Typography>
 
-        <Videos videos={[]} />
+        {videos.length > 0 && <Videos videos={videos} />}
       </Box>
     </Stack>
   );
