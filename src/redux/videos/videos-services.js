@@ -5,8 +5,22 @@ const getVideos = async (category) => {
   return items;
 };
 
+const getVideo = async (id) => {
+  const { items } = await getDataFromAPI(
+    `search?channelId=${id}&part=snippet&order=date`
+  );
+  return items;
+};
+
+const getChannel = async (id) => {
+  const data = await getDataFromAPI(`channels?part=snippet&id=${id}`);
+  return data?.items[0];
+};
+
 const videosService = {
   getVideos,
+  getVideo,
+  getChannel,
 };
 
 export default videosService;

@@ -9,8 +9,24 @@ export const getVideosFromAPI = createAsyncThunk(
   }
 );
 
+export const getVideoFromAPI = createAsyncThunk(
+  'videos/getVideo',
+  async (id) => {
+    return await videosService.getVideo(id);
+  }
+);
+
+export const getChannelFromAPI = createAsyncThunk(
+  'videos/getChannel',
+  async (id) => {
+    return await videosService.getChannel(id);
+  }
+);
+
 const initialState = {
   videos: [],
+  channel: {},
+  video: {},
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -37,6 +53,30 @@ const videosSlice = createSlice({
       state.videos = action.payload;
     },
     [getVideosFromAPI.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+    },
+    [getChannelFromAPI.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [getChannelFromAPI.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.channel = action.payload;
+    },
+    [getChannelFromAPI.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+    },
+    [getVideoFromAPI.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [getVideoFromAPI.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.video = action.payload;
+    },
+    [getVideoFromAPI.rejected]: (state, action) => {
       state.isLoading = false;
       state.isError = true;
     },
