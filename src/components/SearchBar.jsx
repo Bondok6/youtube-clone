@@ -1,13 +1,25 @@
 import { Paper, IconButton } from '@mui/material';
 import { Search } from '@mui/icons-material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
   const [search, setSearch] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (search) {
+      navigate(`/search/${search}`);
+      setSearch('');
+    }
+  };
+
   return (
     <Paper
       component="form"
-      onSubmit={() => {}}
+      onSubmit={handleSubmit}
       sx={{
         borderRadius: 20,
         border: '1px solid #e3e3e3',

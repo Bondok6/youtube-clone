@@ -17,10 +17,17 @@ const getChannel = async (id) => {
   return data?.items[0];
 };
 
+const getDatabySearch = async (search) => {
+  console.log(search);
+  const { items } = await getDataFromAPI(`search?part=snippet&q=${search}`);
+  return items;
+};
+
 const videosService = {
   getVideos,
   getVideo,
   getChannel,
+  getDatabySearch,
 };
 
 export default videosService;

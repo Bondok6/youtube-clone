@@ -23,10 +23,18 @@ export const getChannelFromAPI = createAsyncThunk(
   }
 );
 
+export const getDatabySearch = createAsyncThunk(
+  'videos/getDatabySearch',
+  async (search) => {
+    return await videosService.getDatabySearch(search);
+  }
+);
+
 const initialState = {
   videos: [],
   channel: {},
   video: {},
+  filteredData: [],
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -77,6 +85,18 @@ const videosSlice = createSlice({
       state.video = action.payload;
     },
     [getVideoFromAPI.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+    },
+    [getDatabySearch.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [getDatabySearch.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.filteredData = action.payload;
+    },
+    [getDatabySearch.rejected]: (state, action) => {
       state.isLoading = false;
       state.isError = true;
     },
