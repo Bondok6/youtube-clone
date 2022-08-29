@@ -11,7 +11,7 @@ const Feed = () => {
 
   useEffect(() => {
     dispatch(getVideosFromAPI(selectedCategory));
-  }, []);
+  }, [dispatch]);
 
   const videos = useSelector((state) => state.videos.videos);
 
