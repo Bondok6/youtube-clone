@@ -17,7 +17,7 @@ const ChannelDetails = () => {
   useEffect(() => {
     dispatch(getChannelFromAPI(id));
     dispatch(getVideoFromAPI(id));
-  }, [dispatch, id, getChannelFromAPI, getVideoFromAPI]);
+  }, [dispatch, id]);
 
   const channel = useSelector((state) => state.videos.channel);
 

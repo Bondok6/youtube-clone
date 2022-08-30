@@ -23,7 +23,6 @@ const getDatabySearch = async (search) => {
 };
 
 const getVideoDetails = async (id) => {
-  console.log(id);
   const data = await getDataFromAPI(`videos?part=snippet,statistics&id=${id}`);
   return data.items[0];
 };

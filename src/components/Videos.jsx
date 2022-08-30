@@ -1,7 +1,5 @@
 import { Stack, Box } from '@mui/material';
-
 import { ChannelCard, VideoCard } from './';
-import { Oval } from 'react-loader-spinner';
 
 const Videos = ({ videos, direction }) => {
   return (

@@ -20,7 +20,7 @@ const VideoDetails = () => {
   useEffect(() => {
     dispatch(getVideoDetailsFromAPI(id));
     dispatch(getRelatedVideosFromAPI(id));
-  }, [dispatch, getVideoDetailsFromAPI, getRelatedVideosFromAPI, id]);
+  }, [dispatch, id]);
 
   const videoDetail = useSelector((state) => state.videos.specificVideo);
   const videos = useSelector((state) => state.videos.relatedVideos);

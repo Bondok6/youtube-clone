@@ -12,7 +12,7 @@ const SearchFeed = () => {
 
   useEffect(() => {
     dispatch(getDatabySearch(searchTerm));
-  }, [dispatch, getDatabySearch, searchTerm]);
+  }, [dispatch, searchTerm]);
 
   const videos = useSelector((state) => state.videos.filteredVideos);
 
