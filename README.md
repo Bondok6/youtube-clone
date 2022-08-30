@@ -1,6 +1,6 @@
 # Youtube Clone
 
-> #### Built a youtube clone application in [React.js](https://reactjs.org/docs/getting-started.html) and [Redux-Toolkit](https://redux-toolkit.js.org/) with [Material UI 5](https://mui.com/) and Youtube V3 [RapidAPI](https://rapidapi.com/ytdlfree/api/youtube-v31?utm_source=youtube.com%2FJavaScriptMastery&utm_medium=referral&utm_campaign=DevRel) 
+> #### Built a youtube clone application in [React.js](https://reactjs.org/docs/getting-started.html) and [Redux-Toolkit](https://redux-toolkit.js.org/) with [Material UI 5](https://mui.com/) and [Youtube V3 RapidAPI](https://rapidapi.com/ytdlfree/api/youtube-v31?utm_source=youtube.com%2FJavaScriptMastery&utm_medium=referral&utm_campaign=DevRel) 
 
 
 ## Built With
