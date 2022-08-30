@@ -16,7 +16,6 @@
 - react-player
 - react-loading
 - ES6 
-- Webpack
 - Linter
 
 ## Live Demo
