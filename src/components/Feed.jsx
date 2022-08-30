@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Sidebar, Videos } from './';
 import { getVideosFromAPI } from '../redux/videos/videos-slice';
+import { Oval } from 'react-loader-spinner';
 
 const Feed = () => {
   const [selectedCategory, setSelectedCategory] = useState('New');
@@ -15,6 +16,26 @@ const Feed = () => {
 
   const videos = useSelector((state) => state.videos.videos);
 
+  const { isLoading } = useSelector((state) => state.videos);
+
+  if (isLoading) {
+    return (
+      <Box
+        sx={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          inset: '0px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#000',
+        }}
+      >
+        <Oval width={50} height={50} />
+      </Box>
+    );
+  }
   return (
     <Stack sx={{ flexDirection: { sx: 'column', md: 'row' } }}>
       <Box
