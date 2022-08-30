@@ -1,24 +1,21 @@
+import { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Videos } from './';
-import { getDatabySearch } from '../redux/videos/videos-slice';
 import { useParams } from 'react-router-dom';
 import { Oval } from 'react-loader-spinner';
+import { getDataFromAPI } from './../utils/getDataFromAPI';
 
 const SearchFeed = () => {
-  const dispatch = useDispatch();
+  const [videos, setVideos] = useState(null);
   const { searchTerm } = useParams();
 
   useEffect(() => {
-    dispatch(getDatabySearch(searchTerm));
-  }, [dispatch, searchTerm]);
+    getDataFromAPI(`search?part=snippet&q=${searchTerm}`).then((data) =>
+      setVideos(data.items)
+    );
+  }, [searchTerm]);
 
-  const videos = useSelector((state) => state.videos.filteredVideos);
-
-  const { isLoading } = useSelector((state) => state.videos);
-
-  if (isLoading) {
+  if (videos === null) {
     return (
       <Box
         sx={{

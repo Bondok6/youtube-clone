@@ -4,17 +4,15 @@ import { Link, useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import { Typography, Box, Stack } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { Videos } from './';
+import { Oval } from 'react-loader-spinner';
 import {
   getVideoDetailsFromAPI,
   getRelatedVideosFromAPI,
 } from '../redux/videos/videos-slice';
 
-import { Videos } from './';
-import { Oval } from 'react-loader-spinner';
-
 const VideoDetails = () => {
   const { id } = useParams();
-
   const dispatch = useDispatch();
 
   useEffect(() => {

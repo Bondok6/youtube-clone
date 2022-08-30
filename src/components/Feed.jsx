@@ -7,7 +7,6 @@ import { Oval } from 'react-loader-spinner';
 
 const Feed = () => {
   const [selectedCategory, setSelectedCategory] = useState('New');
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,7 +14,6 @@ const Feed = () => {
   }, [dispatch, selectedCategory]);
 
   const videos = useSelector((state) => state.videos.videos);
-
   const { isLoading } = useSelector((state) => state.videos);
 
   if (isLoading) {
@@ -36,6 +34,7 @@ const Feed = () => {
       </Box>
     );
   }
+
   return (
     <Stack sx={{ flexDirection: { sx: 'column', md: 'row' } }}>
       <Box

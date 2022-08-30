@@ -17,11 +17,6 @@ const getChannel = async (id) => {
   return data?.items[0];
 };
 
-const getDatabySearch = async (search) => {
-  const { items } = await getDataFromAPI(`search?part=snippet&q=${search}`);
-  return items;
-};
-
 const getVideoDetails = async (id) => {
   const data = await getDataFromAPI(`videos?part=snippet,statistics&id=${id}`);
   return data.items[0];
@@ -38,7 +33,6 @@ const videosService = {
   getVideos,
   getVideo,
   getChannel,
-  getDatabySearch,
   getVideoDetails,
   getRelatedVideos,
 };

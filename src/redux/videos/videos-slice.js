@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
 import videosService from './videos-services';
 
 export const getVideosFromAPI = createAsyncThunk(
@@ -23,13 +22,6 @@ export const getChannelFromAPI = createAsyncThunk(
   }
 );
 
-export const getDatabySearch = createAsyncThunk(
-  'videos/getDatabySearch',
-  async (search) => {
-    return await videosService.getDatabySearch(search);
-  }
-);
-
 export const getVideoDetailsFromAPI = createAsyncThunk(
   'videos/getVideoDetails',
   async (id) => {
@@ -48,7 +40,6 @@ const initialState = {
   videos: [],
   channel: {},
   video: {},
-  filteredData: [],
   relatedVideos: [],
   specificVideo: {},
   isLoading: false,
@@ -101,18 +92,6 @@ const videosSlice = createSlice({
       state.video = action.payload;
     },
     [getVideoFromAPI.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.isError = true;
-    },
-    [getDatabySearch.pending]: (state, action) => {
-      state.isLoading = true;
-    },
-    [getDatabySearch.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.isSuccess = true;
-      state.filteredData = action.payload;
-    },
-    [getDatabySearch.rejected]: (state, action) => {
       state.isLoading = false;
       state.isError = true;
     },

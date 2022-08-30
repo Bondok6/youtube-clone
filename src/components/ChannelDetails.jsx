@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { Box } from '@mui/material';
+import { Videos, ChannelCard } from './';
+import { Oval } from 'react-loader-spinner';
 import {
   getChannelFromAPI,
   getVideoFromAPI,
 } from '../redux/videos/videos-slice';
-import { Box } from '@mui/material';
-
-import { Videos, ChannelCard } from './';
-import { Oval } from 'react-loader-spinner';
 
 const ChannelDetails = () => {
   const { id } = useParams();
