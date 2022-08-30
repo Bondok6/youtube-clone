@@ -18,8 +18,20 @@ const getChannel = async (id) => {
 };
 
 const getDatabySearch = async (search) => {
-  console.log(search);
   const { items } = await getDataFromAPI(`search?part=snippet&q=${search}`);
+  return items;
+};
+
+const getVideoDetails = async (id) => {
+  console.log(id);
+  const data = await getDataFromAPI(`videos?part=snippet,statistics&id=${id}`);
+  return data.items[0];
+};
+
+const getRelatedVideos = async (id) => {
+  const { items } = await getDataFromAPI(
+    `search?part=snippet&relatedToVideoId=${id}&type=video`
+  );
   return items;
 };
 
@@ -28,6 +40,8 @@ const videosService = {
   getVideo,
   getChannel,
   getDatabySearch,
+  getVideoDetails,
+  getRelatedVideos,
 };
 
 export default videosService;

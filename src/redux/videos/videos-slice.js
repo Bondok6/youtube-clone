@@ -30,11 +30,27 @@ export const getDatabySearch = createAsyncThunk(
   }
 );
 
+export const getVideoDetailsFromAPI = createAsyncThunk(
+  'videos/getVideoDetails',
+  async (id) => {
+    return await videosService.getVideoDetails(id);
+  }
+);
+
+export const getRelatedVideosFromAPI = createAsyncThunk(
+  'videos/getRelatedVideos',
+  async (id) => {
+    return await videosService.getRelatedVideos(id);
+  }
+);
+
 const initialState = {
   videos: [],
   channel: {},
   video: {},
   filteredData: [],
+  relatedVideos: [],
+  specificVideo: {},
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -97,6 +113,30 @@ const videosSlice = createSlice({
       state.filteredData = action.payload;
     },
     [getDatabySearch.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+    },
+    [getVideoDetailsFromAPI.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [getVideoDetailsFromAPI.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.specificVideo = action.payload;
+    },
+    [getVideoDetailsFromAPI.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+    },
+    [getRelatedVideosFromAPI.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [getRelatedVideosFromAPI.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.relatedVideos = action.payload;
+    },
+    [getRelatedVideosFromAPI.rejected]: (state, action) => {
       state.isLoading = false;
       state.isError = true;
     },
