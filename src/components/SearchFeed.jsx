@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Videos } from './';
 import { getDatabySearch } from '../redux/videos/videos-slice';
 import { useParams } from 'react-router-dom';
+import { Oval } from 'react-loader-spinner';
 
 const SearchFeed = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,27 @@ const SearchFeed = () => {
   }, [dispatch, getDatabySearch, searchTerm]);
 
   const videos = useSelector((state) => state.videos.filteredVideos);
+
+  const { isLoading } = useSelector((state) => state.videos);
+
+  if (isLoading) {
+    return (
+      <Box
+        sx={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          inset: '0px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#000',
+        }}
+      >
+        <Oval width={50} height={50} />
+      </Box>
+    );
+  }
 
   return (
     <Box

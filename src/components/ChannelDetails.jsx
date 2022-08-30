@@ -8,6 +8,7 @@ import {
 import { Box } from '@mui/material';
 
 import { Videos, ChannelCard } from './';
+import { Oval } from 'react-loader-spinner';
 
 const ChannelDetails = () => {
   const { id } = useParams();
@@ -21,6 +22,27 @@ const ChannelDetails = () => {
   const channel = useSelector((state) => state.videos.channel);
 
   const video = useSelector((state) => state.videos.video);
+
+  const { isLoading } = useSelector((state) => state.videos);
+
+  if (isLoading) {
+    return (
+      <Box
+        sx={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          inset: '0px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#000',
+        }}
+      >
+        <Oval width={50} height={50} />
+      </Box>
+    );
+  }
 
   return (
     <Box minHeight="95vh">

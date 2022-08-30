@@ -10,6 +10,7 @@ import {
 } from '../redux/videos/videos-slice';
 
 import { Videos } from './';
+import { Oval } from 'react-loader-spinner';
 
 const VideoDetails = () => {
   const { id } = useParams();
@@ -23,6 +24,25 @@ const VideoDetails = () => {
 
   const videoDetail = useSelector((state) => state.videos.specificVideo);
   const videos = useSelector((state) => state.videos.relatedVideos);
+
+  if (videoDetail.length === 0 || videos.length === 0) {
+    return (
+      <Box
+        sx={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          inset: '0px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#000',
+        }}
+      >
+        <Oval width={50} height={50} />
+      </Box>
+    );
+  }
 
   const {
     snippet: { title, channelId, channelTitle },

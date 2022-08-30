@@ -4,21 +4,6 @@ import { ChannelCard, VideoCard } from './';
 import { Oval } from 'react-loader-spinner';
 
 const Videos = ({ videos, direction }) => {
-  if (videos.length === 0) {
-    return (
-      <Box
-        sx={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Oval width={50} height={50} />
-      </Box>
-    );
-  }
   return (
     <Stack
       direction={direction || 'row'}
